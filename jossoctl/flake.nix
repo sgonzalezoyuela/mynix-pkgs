@@ -1,5 +1,5 @@
 {
-  description = "A Go application";
+  description = "JOSSO CTL flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
@@ -9,7 +9,7 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        jossoctl.${system} = with nixpkgs.legacyPackages.${system}; stdenv.mkDerivation rec {
+        mypkg = with nixpkgs.legacyPackages.${system}; stdenv.mkDerivation rec {
           pname = "jossoctl";
           version = "v0.5.5";
 
@@ -35,7 +35,10 @@
           };
         };
       in {
-        #packages = jossoctl.${system};
-        defaultPackage = jossoctl.${system};
+        
+        defaultPackage = mypkg;
+        packages = {
+          jossoctl = mypkg;
+        };
       });
 }
