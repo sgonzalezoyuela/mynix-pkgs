@@ -43,7 +43,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-Qzx3B6sNCLinI5ypYL+7hKjlmhv/eBrE5BbrijLG6Vk=",
+        "narHash": "sha256-V635gyfoSH/8dz31wHIqJH+1xNSV7srEmLpQYtAYQPM=",
         "path": "./jossoctl",
         "type": "path"
       },
