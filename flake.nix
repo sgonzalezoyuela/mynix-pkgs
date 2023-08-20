@@ -10,8 +10,9 @@
   outputs = { self, flake-utils, jossoctl-pkg }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        jossoctl = jossoctl-pkg.defaultPackage.${system};
+        jossoctl = jossoctl-pkg.packages.${system}.jossoctl;
+        iamtfctl = jossoctl-pkg.packages.${system}.iamtfctl;
       in {
-        packages = { inherit jossoctl; };        
+        packages = { inherit jossoctl iamtfctl; };        
       });
 }
