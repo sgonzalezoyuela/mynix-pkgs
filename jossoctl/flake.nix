@@ -14,7 +14,7 @@
           version = "v0.5.5";
 
           src = builtins.fetchTarball {
-            url = "https://github.com/atricore/jossoctl-go/archive/refs/tags/v0.5.5.tar.gz";
+            url = "https://github.com/atricore/jossoctl-go/archive/refs/tags/${version}.tar.gz";
             sha256 = "12jcqmhlp2g2xpwprfrmarycpksxw9i7xh89i7b6mjkhvbwd10z8";
           };
 
@@ -22,7 +22,7 @@
 
           buildPhase = ''
             export GOCACHE=$(mktemp -d)
-            go build -o ./jossoctl-go ./jossoctl
+            go build -ldflags="-X 'main.version=${version}'" -o ./jossoctl-go ./jossoctl
           '';
 
           installPhase = ''
@@ -48,7 +48,7 @@
 
           buildPhase = ''
             export GOCACHE=$(mktemp -d)
-            go build -o ./iamtfctl-go ./iamtfctl
+            go build -ldflags="-X 'main.version=${version}'" -o ./iamtfctl-go ./iamtfctl
           '';
 
           installPhase = ''
@@ -60,6 +60,7 @@
             license = licenses.mit; # Update as needed
           };
         };
+      
       in {
         
         defaultPackage = jossoctl-pkg;
