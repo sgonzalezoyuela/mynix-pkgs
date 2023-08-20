@@ -10,7 +10,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         jossoctl.${system} = with nixpkgs.legacyPackages.${system}; stdenv.mkDerivation rec {
-          pname = "jossoctl-go";
+          pname = "jossoctl";
           version = "v0.5.5";
 
           src = builtins.fetchTarball {
@@ -35,7 +35,7 @@
           };
         };
       in {
-        packages = jossoctl;
+        #packages = jossoctl.${system};
         defaultPackage = jossoctl.${system};
       });
 }
